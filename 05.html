@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>購物天堂╳美食輕鬆享 女孩們的充電小旅行</title>
+<link href="http://knt-tabihime.com/kh_price/css/form.css" rel="stylesheet" type="text/css">
+<link href="http://knt-tabihime.com/kh_price/css/style_page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://knt-tabihime.com/kh_price/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="http://kh.dev/index.php?/price/getPriceData"></script>
+<script type="text/javascript">
+$(function(){
+  $('#send_btn').click(function(){
+    alert('信件已寄出, 謝謝您');
+  });
+  $('.has_price, .hotel, .plus, #plus_day2, #plus_day3').click(function(){countPrice()});
+  $('.opts').change(function(){countPrice()});
+
+  function countPrice(){
+    var total_price = 0;
+    $.each($('.has_price'), function(index, obj){
+      if($(obj).prop('checked')){
+        total_price += parseInt(eval('dataset.uuid_'+$(obj).val()+'.price'), 10);
+      }
+    });
+
+    $.each($('.hotel'), function(index, obj){
+      if($(obj).prop('checked')){
+        id = $(obj).attr('id').split('_')[1];
+        total_price += parseInt(eval('dataset.uuid_'+$('#hotel_opt_'+id).val()+'.price'), 10) * parseInt($('#day_'+id).val(),10);
+      }
+    });
+
+    $('#total_price').html('$'+total_price);
+  }
+});
+</script>
+</head>
+
+<body>
+<section class="aside">
+<form id="price_form">
+  <div class="send">
+    <p><span class="red">自組行程步驟</span></p>
+    <p>1. 行程可依個人喜好自由選配機票、飯店及行程。</p>
+    <p>2. 請在所需的行程選項點選，將可在線上看到價錢試算金額。</p>
+  </div>
+  <h1>行程名稱：<span class="red">購物天堂╳美食輕鬆享 女孩們的充電小旅行</span></h1>
+  <div class="send">
+    <!-- <div>
+      <h2>訂購人基本資料</h2>
+    </div>
+    <br>
+    <div >
+      <label class="label-title-2"><span class="red">＊</span>訂購人姓名：</label>
+      <input type="text" name="name" id="name"  class="form-style">
+    </div>
+    <div >
+      <label class="label-title-2"><span class="red">＊</span>聯絡電話：</label>
+      <input type="text" name="tel" id="tel"  class="form-style">
+    </div>
+    <div >
+      <label class="label-title-2"><span class="red">＊</span>Email信箱：</label>
+      <input type="text" name="email" id="email"  class="form-style">
+    </div>
+    <br> -->
+    <div>
+      <h2>行程資訊</h2>
+    </div>
+    <br>
+    <div>
+      <label class="label-title-2">住宿飯店：</label>
+      <input type="checkbox" name="hotel_1" id="hotel_1" value="show" class="check-style-2 hotel">
+      東京超值
+      飯店名稱
+      <select  name="hotel_opt_1" id="hotel_opt_1" class="opts">
+        <option value=41 selected>新宿NEW CITY</option>
+        <option value=42>池袋GRAND CITY</option>
+        <option value=43>THE B 池袋酒店</option>
+        <option value=44>高輪東武飯店</option>
+        <option value=45>西鐵INN日本橋</option>
+        <option value=46>地產濱松町飯店</option>
+        <option value=47>赤阪陽光飯店</option>
+        <option value=48>VIA INN秋葉原</option>
+        <option value=49>日本橋VIA飯店</option>
+        <option value=50>成田VIEW飯店</option>
+      </select>
+      ，
+      <select name="day_1" id="day_1" class="opts">
+        <option value=1 selected>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+      </select>
+      晚 </div>
+    <div class="text-right-4-2">
+      <input type="checkbox" name="hotel_2" id="hotel_2" value="show" class="check-style-2 hotel">
+      東京舒適
+      飯店名稱
+      <select name="hotel_opt_2" id="hotel_opt_2" class="opts">
+        <option value=51 selected>品川王子主塔</option>
+        <option value=52>淺草豪景酒店</option>
+        <option value=53>京王廣場酒店</option>
+        <option value=54>日航東京酒店</option>
+        <option value=55>台場太平洋格蘭酒店</option>
+        <option value=56>新宿東京凱悅酒店</option>
+      </select>
+      ，
+      <select name="day_2" id="day_2" class="opts">
+        <option value=1 selected>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+      </select>
+      晚 </div>
+    <div class="text-right-4-2">
+      <input type="checkbox" name="hotel_3" id="hotel_3" value="show" class="check-style-2 hotel">
+      東京奢華
+      飯店名稱
+      <select name="hotel_opt_3" id="hotel_opt_3" class="opts">
+        <option value=57 selected>東京麗池卡登酒店</option>
+        <option value=58>東京帝國</option>
+        <option value=59>PARK東京凱悅</option>
+        <option value=60>東京香格里拉酒店</option>
+        <option value=61>東京四季酒店</option>
+      </select>
+      ，
+      <select name="day_3" id="day_3" class="opts">
+        <option value=1 selected>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+      </select>
+      晚 </div>
+    <div class="text-right-4-2">備註：房價皆以中床房不含早餐計算，如需雙床房請另洽旅姬</div>
+    <br>
+    <div>
+      <h2>價錢試算</h2>
+    </div>
+    <br>
+    <div>
+      <label class="label-title-2">全部費用：</label>
+      <span class="red_t16" id="total_price">$0</span>元起（以人數：成人1人計價） </div>
+    <br>
+  </div>
+  </div>
+  <p>行程小祕訣：</p>
+  <p>1. 安排行程內容時請記得考慮航班時間喔！</p>
+  <p>2. 建議住宿飯店與下午行程同一區域，方便休息再出發！</p>
+  <p>3. 提早一個月預約，飯店將有早鳥優惠價！</p>
+  </div>
+  <div class="form-box">
+    <!-- <input name="" id="send_btn" type="button" value="確認送出" class="btn-default" /> -->
+  </div>
+  <!-- <p style="text-align:center"><span class="red">送出資料不代表訂位成功，將有專人為您服務，謝謝！</span></p> -->
+</form>
+</section>
+</body>
+</html>

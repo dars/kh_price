@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>暢遊四都╳行程自由選 女孩們的獨享旅行</title>
+<link href="http://knt-tabihime.com/kh_price/css/form.css" rel="stylesheet" type="text/css">
+<link href="http://knt-tabihime.com/kh_price/css/style_page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://knt-tabihime.com/kh_price/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="http://kh.dev/index.php?/price/getPriceData"></script>
+<script type="text/javascript">
+$(function(){
+  $('#send_btn').click(function(){
+    alert('信件已寄出, 謝謝您');
+  });
+  $('.has_price, .hotel, .plus, #plus_day2, #plus_day3').click(function(){countPrice()});
+  $('.opts').change(function(){countPrice()});
+
+  function countPrice(){
+    var total_price = 0;
+    $.each($('.has_price'), function(index, obj){
+      if($(obj).prop('checked')){
+        total_price += parseInt(eval('dataset.uuid_'+$(obj).val()+'.price'), 10);
+      }
+    });
+
+    $.each($('.hotel'), function(index, obj){
+      if($(obj).prop('checked')){
+        id = $(obj).attr('id').split('_')[1];
+        total_price += parseInt(eval('dataset.uuid_'+$('#hotel_opt_'+id).val()+'.price'), 10) * parseInt($('#day_'+id).val(),10);
+      }
+    });
+
+    if($('#plus_1').prop('checked')){
+      if($('#plus_day2').prop('checked')){
+        total_price += parseInt(eval('dataset.uuid_'+$('#plus_day2').val()+'.price'), 10);
+      }
+      if($('#plus_day3').prop('checked')){
+        total_price += parseInt(eval('dataset.uuid_'+$('#plus_day3').val()+'.price'), 10);
+      }
+    }
+    if($('#plus_2').prop('checked')){
+      total_price += parseInt(eval('dataset.uuid_'+$('#plus_2').val()+'.price'), 10) * parseInt($('#tickets').val(), 10);
+    }
+
+
+    $('#total_price').html('$'+total_price);
+  }
+});
+</script>
+</head>
+
+<body>
+<section class="aside">
+<form id="price_form">
+  <div class="send">
+    <p><span class="red">自組行程步驟</span></p>
+    <p>1. 行程可依個人喜好自由選配機票、飯店及行程。</p>
+    <p>2. 請在所需的行程選項點選，將可在線上看到價錢試算金額。</p>
+  </div>
+  <h1>行程名稱：<span class="red">暢遊四都╳行程自由選 女孩們的獨享旅行</span></h1>
+  <div class="send">
+    <!-- <div>
+      <h2>訂購人基本資料</h2>
+    </div>
+    <br>
+    <div >
+      <label class="label-title-2"><span class="red">＊</span>訂購人姓名：</label>
+      <input type="text" name="name" id="name"  class="form-style">
+    </div>
+    <div >
+      <label class="label-title-2"><span class="red">＊</span>聯絡電話：</label>
+      <input type="text" name="tel" id="tel"  class="form-style">
+    </div>
+    <div >
+      <label class="label-title-2"><span class="red">＊</span>Email信箱：</label>
+      <input type="text" name="email" id="email"  class="form-style">
+    </div>
+    <br> -->
+    <div>
+      <h2>行程資訊</h2>
+    </div>
+    <br>
+    <div>
+      <label class="label-title-2">機票：</label>
+      <input type="checkbox" name="airline" value="62" class="check-style-2 has_price">
+      台北-關西來回機票</div>
+    <div>
+      <label class="label-title-2">您要選擇的行程為：</label>
+    </div>
+    <div class="text-right-4-2"> <span class="red">＊以下五個行程限單選</span></div>
+    <div class="text-right-4">
+      <div class="text-right-img"><img src="http://knt-tabihime.com/kh_price/images/02_a.jpg" width="200" height="100"></div>
+      <div class="text-right-11">
+        <input type="checkbox" name="input5" value="70" class="check-style-2 has_price">
+        A優雅京都：東山巡禮</div>
+    </div>
+    <div class="text-right-4">
+      <div class="text-right-img"><img src="http://knt-tabihime.com/kh_price/images/02_d.jpg" width="200" height="100"></div>
+      <div class="text-right-11">
+        <input type="checkbox" name="" value="73" class="check-style-2 has_price">
+        D自在奈良：與鹿共遊</div>
+    </div>
+    <div class="text-right-4">
+      <div class="text-right-img"><img src="http://knt-tabihime.com/kh_price/images/02_e.jpg" width="200" height="100"></div>
+      <div class="text-right-11">
+        <input type="checkbox" name="" value="74" class="check-style-2 has_price">
+        E繁華大阪：美食饗宴</div>
+    </div>
+    <div class="text-right-4">
+      <div class="text-right-img"><img src="http://knt-tabihime.com/kh_price/images/02_f.jpg" width="200" height="100"></div>
+      <div class="text-right-11">
+        <input type="checkbox" name="" value="75" class="check-style-2 has_price">
+        F繁華大阪：港畔樂遊</div>
+    </div>
+    <div class="text-right-4">
+      <div class="text-right-img"><img src="http://knt-tabihime.com/kh_price/images/02_h.jpg" width="200" height="100"></div>
+      <div class="text-right-11">
+        <input type="checkbox" name="" value="77" class="check-style-2 has_price">
+        H浪漫神戶：璀璨夜景</div>
+    </div>
+    <div class="text-right-4-2"><span class="red">*以下行程可複選</span></div>
+    <div class="text-right-4">
+      <div class="text-right-img"><img src="http://knt-tabihime.com/kh_price/images/02_b.jpg" width="200" height="100"></div>
+      <div class="text-right-11">
+        <input type="checkbox" name="" value="71" class="check-style-2 has_price">
+        B優雅京都：和服漫步</div>
+    </div>
+    <div class="text-right-4">
+      <div class="text-right-img"><img src="http://knt-tabihime.com/kh_price/images/02_c.jpg" width="200" height="100"></div>
+      <div class="text-right-11">
+        <input type="checkbox" name="" value="72" class="check-style-2 has_price">
+        C優雅京都：嵐山散策</div>
+    </div>
+    <div class="text-right-4">
+      <div class="text-right-img"><img src="http://knt-tabihime.com/kh_price/images/02_g.jpg" width="200" height="100"></div>
+      <div class="text-right-11">
+        <input type="checkbox" name="" value="76" class="check-style-2 has_price">
+        G浪漫神戶：懷舊洋風</div>
+    </div>
+    <br>
+    <div>
+      <label class="label-title-2">住宿飯店：</label>
+      <input type="checkbox" name="hotel_1" id="hotel_1" class="check-style-2 hotel">
+      京都地區
+      飯店名稱
+      <select name="hotel_opt_1" id="hotel_opt_1" class="opts">
+        <option value=1 selected>新都酒店</option>
+        <option value=2>近鐵京都站酒店</option>
+        <option value=3>新阪急酒店</option>
+        <option value=4>京阪京都急酒店</option>
+        <option value=5>京都太陽道大飯店</option>
+        <option value=6>ARK京都酒店</option>
+        <option value=7>ROYAL&amp;SPA酒店</option>
+        <option value=8>京都國際飯店</option>
+        <option value=9>京都CENTRAL-INN</option>
+        <option value=10>溪山閣溫泉飯店</option>
+      </select>
+      ，
+      <select name="day_1" id="day_1" class="opts">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+      </select>
+      晚 </div>
+    <div class="text-right-4-2">
+      <input type="checkbox" name="hotel_2" id="hotel_2" class="check-style-2 hotel">
+      大阪地區
+      飯店名稱
+      <select name="hotel_opt_2" id="hotel_opt_2" class="opts">
+        <option value=11 selected>萬豪都酒店</option>
+        <option value=12>喜來登都大阪酒店</option>
+        <option value=13>大阪新阪急酒店</option>
+        <option value=14>日航大阪酒店</option>
+        <option value=15>阪神酒店</option>
+        <option value=16>CROSS大阪酒店</option>
+        <option value=17>大阪廣場酒店</option>
+        <option value=18>IL COURE難波</option>
+        <option value=19>南海瑞士酒店</option>
+        <option value=20>大阪帝國酒店</option>
+        <option value=21>LAND MARK梅田</option>
+        <option value=22>大阪東急INN</option>
+        <option value=23>梅田OS飯店</option>
+        <option value=24>新大阪飯店</option>
+        <option value=25>大阪KEIKO飯店</option>
+        <option value=26>日進難波飯店</option>
+        <option value=27>ARK大阪心齋橋飯店</option>
+      </select>
+      ，
+      <select name="day_2" id="day_2" class="opts">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+      </select>
+      晚 </div>
+    <div class="text-right-4-2">
+      <input type="checkbox" name="hotel_3" id="hotel_3" class="check-style-2 hotel">
+      神戶地區
+      飯店名稱
+      <select name="hotel_opt_3" id="hotel_opt_3" class="opts">
+        <option value=28 selected>美利堅公園東方飯店</option>
+        <option value=29>神戶皇宮</option>
+        <option value=30>太陽道雅致大飯店</option>
+        <option value=31>神戶地產飯店</option>
+        <option value=32>NOVOTEL甲子園</option>
+        <option value=33>THE B 神戶</option>
+        <option value=34>神戶東急INN</option>
+        <option value=35>神戶廣場酒店</option>
+      </select>
+      ，
+      <select name="day_3" id="day_3" class="opts">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+      </select>
+      晚 </div>
+    <div class="text-right-4-2">
+      <input type="checkbox" name="hotel_4" id="hotel_4" class="check-style-2 hotel">
+      奈良地區
+      飯店名稱
+      <select name="hotel_opt_4" id="hotel_opt_4" class="opts">
+        <option value=36 selected>日航奈良</option>
+        <option value=37>太陽道奈良大飯店</option>
+        <option value=38>奈良健康廣場飯店</option>
+        <option value=39>奈良藤田飯店</option>
+        <option value=40>奈良ROYAL飯店</option>
+      </select>
+      ，
+      <select name="day_4" id="day_4" class="opts">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+      </select>
+      晚 </div>
+    <div class="text-right-4-2">備註：房價皆以中床房不含早餐計算，如需雙床房請另洽旅姬</div>
+    <br>
+    <div>
+      <label class="label-title-2">加購價：</label>
+      <input type="checkbox" name="plus_1" id="plus_1" value="show" class="check-style-2 plus">
+      KANNSAI THRU PASS 關西周遊券（
+      <input type="radio" name="plus_day" id="plus_day2" value="64" class="check-style-2" checked>
+      二日
+      <input type="radio" name="plus_day" id="plus_day3" value="65" class="check-style-2">
+      三日）請點選</div>
+    <div class="text-right-4-2">
+      <input type="checkbox" name="plus_2" id="plus_2" value="66" class="check-style-2 plus">
+      大阪環球影城入場券　
+      <select name="tickets" id="tickets" class="opts">
+        <option selected>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+      張</div>
+    <br>
+    <div>
+      <h2>價錢試算</h2>
+    </div>
+    <br>
+    <div>
+      <label class="label-title-2">全部費用：</label>
+      <span class="red_t16" id="total_price">$0</span>元起（以人數：成人1人計價） </div>
+    <br>
+  </div>
+  </div>
+  <p>行程小祕訣：</p>
+  <p>1. 安排行程內容時請記得考慮航班時間喔！</p>
+  <p>2. 建議住宿飯店與下午行程同一區域，方便休息再出發！</p>
+  <p>3. 提早一個月預約，飯店將有早鳥優惠價！</p>
+  </div>
+  <div class="form-box">
+    <!-- <input name="" id="send_btn" type="button" value="確認送出" class="btn-default" /> -->
+  </div>
+  <!-- <p style="text-align:center"><span class="red">送出資料不代表訂位成功，將有專人為您服務，謝謝！</span></p> -->
+</form>
+</section>
+</body>
+</html>
