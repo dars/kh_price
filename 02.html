@@ -6,7 +6,6 @@
 <link href="http://knt-tabihime.com/kh_price/css/form.css" rel="stylesheet" type="text/css">
 <link href="http://knt-tabihime.com/kh_price/css/style_page.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://knt-tabihime.com/kh_price/bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="http://kh.dev/index.php?/price/getPriceData"></script>
 <script type="text/javascript">
 $(function(){
   $('#send_btn').click(function(){
@@ -38,10 +37,6 @@ $(function(){
         total_price += parseInt(eval('dataset.uuid_'+$('#plus_day3').val()+'.price'), 10);
       }
     }
-    if($('#plus_2').prop('checked')){
-      total_price += parseInt(eval('dataset.uuid_'+$('#plus_2').val()+'.price'), 10) * parseInt($('#tickets').val(), 10);
-    }
-
 
     $('#total_price').html('$'+total_price);
   }
@@ -250,14 +245,9 @@ $(function(){
       <input type="radio" name="plus_day" id="plus_day3" value="65" class="check-style-2">
       三日）請點選</div>
     <div class="text-right-4-2">
-      <input type="checkbox" name="plus_2" id="plus_2" value="66" class="check-style-2 plus">
+      <input type="checkbox" name="ticket" id="ticket" value="66" class="check-style-2 has_price">
       大阪環球影城入場券　
-      <select name="tickets" id="tickets" class="opts">
-        <option selected>1</option>
-        <option>2</option>
-        <option>3</option>
-      </select>
-      張</div>
+    </div>
     <br>
     <div>
       <h2>價錢試算</h2>
