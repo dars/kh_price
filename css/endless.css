@@ -4224,7 +4224,31 @@ input[type="radio"]:active + .custom-radio {
 }
 .inbox-panel .inbox-item .from {
   display: inline-block;
-  width: 100px;
+  width: 80px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-left: 10px;
+  height: 19px;
+}
+.inbox-panel .inbox-item .tel {
+  display: inline-block;
+  width: 90px;
+  color: #6d5454;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-left: 10px;
+  height: 19px;
+}
+.inbox-panel .inbox-item .email {
+  display: inline-block;
+  width: 150px;
+  color: #38506d;
   text-overflow: ellipsis;
   overflow: hidden;
   vertical-align: middle;

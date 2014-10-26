@@ -67,196 +67,56 @@
           </div>
           <ul class="inbox-menu" id="inboxMenu">
             <li class="active">
-              <a href="#">
+              <a href="index.php?/admin/index">
                 <i class="fa fa-inbox fa-lg"></i>
                 <span class="m-left-xs">Inbox</span>
-                <span class="badge badge-success pull-right">19</span>
+                <span class="badge badge-success pull-right">{inbox_count}</span>
               </a>
             </li>
             <li class="active">
-              <a href="#">
+              <a href="index.php?/admin/archive">
                 <i class="fa fa-archive fa-lg"></i>
                 <span class="m-left-xs">Archive</span>
+                <span class="badge badge-default pull-right">{archive_count}</span>
               </a>
             </li>
           </ul>
         </div><!-- /.col -->
         <div class="col-sm-9">
           <div class="panel panel-default inbox-panel">
-            <div class="panel-heading">
-              <div class="input-group">
-                <input type="text" class="form-control input-sm" placeholder="Search here...">
-                  <span class="input-group-btn">
-                  <button class="btn btn-default btn-sm" type="button"><i class="fa fa-search"></i></button>
-                </span>
-              </div><!-- /input-group -->
+            <?php if($this->uri->segment(2) == 'index'): ?>
+              <div class="panel-body">
+                <label class="label-checkbox inline">
+                  <input type="checkbox" id="chk-all">
+                  <span class="custom-checkbox"></span>
+                </label>
+                <a class="btn btn-sm btn-danger" id="set_readed_all"><i class="fa fa-check"></i> Make Readed</a>
             </div>
-            <div class="panel-body">
-              <label class="label-checkbox inline">
-                <input type="checkbox" id="chk-all">
-                 <span class="custom-checkbox"></span>
-              </label>
-              <a class="btn btn-sm btn-danger"><i class="fa fa-check"></i> Make Readed</a>
-              <a class="btn btn-sm btn-default"><i class="fa fa-trash-o"></i> Delete</a>
-            </div>
+            <?php endif; ?>
             <ul class="list-group">
+              {results}
               <li class="list-group-item clearfix inbox-item">
+                <?php if($this->uri->segment(2) == 'index'): ?>
                 <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
+                  <input type="checkbox" name="items[]" class="chk-item" value="{id}">
                   <span class="custom-checkbox"></span>
                 </label>
-                <span class="from">Admin</span>
-
+                <?php endif;?>
+                <a href="/index.php?/admin/view/{id}"><span class="from">{name}</span></a>
+                <span class="email">{email}</span>
+                <span class="tel">{tel}</span>
                 <span class="detail">
-                  <span class="label label-danger">Important</span>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.
+                  #{id}. {title}
                 </span>
                 <span class="inline-block pull-right">
-                  <span class="time">2:32 Am</span>
+                  <span class="time">{created_at}</span>
                 </span>
               </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                  <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">My friend</span>
-                <span class="detail">
-                  <span class="label label-warning">Private</span>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.
-                </span>
-                <span class="inline-block pull-right">
-                  <span class="time">Oct 9</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                  <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">John Doe</span>
-                <span class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">Sep 27</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                  <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">Jane Doe</span>
-                <span class="detail">Nunc vel lorem volutpat, placerat erat ut, pulvinar mi.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">Sep 25</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                   <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">My business</span>
-                <span class="detail">
-                  <span class="label label-info">Work</span>
-                  Phasellus ac feugiat mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                </span>
-                <span class="inline-block pull-right">
-                  <span class="time">Sep 1</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                   <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">John Doe</span>
-                <span class="detail">Suspendisse tristique ullamcorper sapien id pulvinar.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">Aug 30</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                  <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">Bill Doe</span>
-                <span class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">Aug 18</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                  <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">My friend</span>
-                <span class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">Aug 17</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                  <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">Jane Doe</span>
-                <span class="detail">Nunc vel lorem volutpat, placerat erat ut, pulvinar mi.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">July 13</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                   <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">My business</span>
-                <span class="detail">Phasellus ac feugiat mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">July 13</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                   <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">John Doe</span>
-                <span class="detail">Suspendisse tristique ullamcorper sapien id pulvinar.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">July 11</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                  <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">Bill Doe</span>
-                <span class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">July 8</span>
-                </span>
-              </li>
-              <li class="list-group-item clearfix inbox-item">
-                <label class="label-checkbox inline">
-                  <input type="checkbox" class="chk-item">
-                  <span class="custom-checkbox"></span>
-                </label>
-                <span class="from">My friend</span>
-                <span class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.</span>
-                <span class="inline-block pull-right">
-                  <span class="time">July 4</span>
-                </span>
-              </li>
+              {/results}
             </ul><!-- /list-group -->
             <div class="panel-footer clearfix">
-              <div class="pull-left">112 messages</div>
-              <div class="pull-right">
+              <div class="pull-left">{count} messages</div>
+              <!-- <div class="pull-right">
                 <span class="middle">Page 1 of 8 </span>
                 <ul class="pagination middle">
                   <li class="disabled"><a href="#"><i class="fa fa-step-backward"></i></a></li>
@@ -264,37 +124,12 @@
                   <li><a href="#"><i class="fa fa-caret-right large"></i></a></li>
                   <li><a href="#"><i class="fa fa-step-forward"></i></a></li>
                 </ul>
-              </div>
+              </div> -->
             </div>
           </div><!-- /panel -->
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /main-container -->
-
-    <!--Modal-->
-    <div class="modal fade" id="newFolder">
-        <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4>Create new folder</h4>
-              </div>
-            <div class="modal-body">
-                <form>
-              <div class="form-group">
-                <label for="folderName">Folder Name</label>
-                <input type="text" class="form-control input-sm" id="folderName" placeholder="Folder name here...">
-              </div>
-            </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-sm btn-success" data-dismiss="modal" aria-hidden="true">Close</button>
-            <a href="#" class="btn btn-danger btn-sm">Save changes</a>
-            </div>
-          </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-  </div><!-- /wrapper -->
 
   <a href="" id="scroll-to-top" class="hidden-print"><i class="fa fa-chevron-up"></i></a>
 
@@ -337,6 +172,29 @@
 
   <!-- Endless -->
   <script src="js/endless/endless.js"></script>
-
+  <script type="text/javascript">
+  $(function(){
+    $('#set_readed_all').click(function(){
+      objs = $('.chk-item:checked');
+      if(objs.length > 0){
+        var flag = confirm('確定要將勾選項目設為已讀？');
+        if(flag){
+          var ids = [];
+          $.each(objs, function(i, e){
+            ids.push($(e).val());
+          });
+          $.ajax({
+            url:'index.php?/admin/set_readed',
+            type: 'post',
+            data: {'ids':ids},
+            success: function(){
+              location.reload();
+            }
+          });
+        }
+      }
+    });
+  });
+  </script>
   </body>
 </html>

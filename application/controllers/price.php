@@ -21,6 +21,7 @@ class Price extends CI_Controller {
     $index = array();
     foreach($res->result() as $row){
       $index[$row->id] = $row->name;
+      $price[$row->id] = $row->price;
     }
     $text = '';
     switch($_POST['kind']){
@@ -52,13 +53,19 @@ class Price extends CI_Controller {
 
     if(@$_POST['airline']){
       $data->airline = $index[$_POST['airline']];
+      $data->airline_id = $_POST['airline'];
+      $data->airline_price = $price[$_POST['airline']];
       $text .= $index[$_POST['airline']]."<br>";
     }
     if(@$_POST['tour']){
       $data->tour = array();
+      $data->tour_id = array();
+      $data->tour_price = array();
       $text .= '<br>行程：<br>';
       foreach(@$_POST['tour'] as $t){
         array_push($data->tour, $index[$t]);
+        array_push($data->tour_id, $t);
+        array_push($data->tour_price, $price[$t]);
         $text .= '&nbsp;&nbsp;'.$index[$t]."<br>";
       }
     }
@@ -66,7 +73,9 @@ class Price extends CI_Controller {
       $text .= '<br>住宿飯店：<br>';
       $tmp = array(
         'name' => $index[$_POST['hotel_opts_1']],
-        'day'  => $_POST['day_1']
+        'day'  => $_POST['day_1'],
+        'id'   => $_POST['hotel_opts_1'],
+        'price' => $price[$_POST['hotel_opts_1']]
       );
       $text .= '&nbsp;&nbsp;'.$index[$_POST['hotel_opts_1']]." x ".$_POST['day_1']."日<br>";
       array_push($data->hotel, $tmp);
@@ -74,7 +83,9 @@ class Price extends CI_Controller {
     if(@$_POST['hotel_2']){
       $tmp = array(
         'name' => $index[$_POST['hotel_opts_2']],
-        'day'  => $_POST['day_2']
+        'day'  => $_POST['day_2'],
+        'id'   => $_POST['hotel_opts_2'],
+        'price' => $price[$_POST['hotel_opts_2']]
       );
       $text .= '&nbsp;&nbsp;'.$index[$_POST['hotel_opts_2']]." x ".$_POST['day_2']."日<br>";
       array_push($data->hotel, $tmp);
@@ -82,7 +93,9 @@ class Price extends CI_Controller {
     if(@$_POST['hotel_3']){
       $tmp = array(
         'name' => $index[$_POST['hotel_opts_3']],
-        'day'  => $_POST['day_3']
+        'day'  => $_POST['day_3'],
+        'id'   => $_POST['hotel_opts_3'],
+        'price' => $price[$_POST['hotel_opts_3']]
       );
       $text .= '&nbsp;&nbsp;'.$index[$_POST['hotel_opts_3']]." x ".$_POST['day_3']."日<br>";
       array_push($data->hotel, $tmp);
@@ -90,7 +103,9 @@ class Price extends CI_Controller {
     if(@$_POST['hotel_4']){
       $tmp = array(
         'name' => $index[$_POST['hotel_opts_4']],
-        'day'  => $_POST['day_4']
+        'day'  => $_POST['day_4'],
+        'id'   => $_POST['hotel_opts_4'],
+        'price' => $price[$_POST['hotel_opts_4']]
       );
       $text .= '&nbsp;&nbsp;'.$index[$_POST['hotel_opts_4']]." x ".$_POST['day_4']."日<br>";
       array_push($data->hotel, $tmp);
@@ -98,6 +113,8 @@ class Price extends CI_Controller {
     if(@$_POST['plus_1']){
       $tmp = array(
         'name' => 'KANNSAI THRU PASS 關西周遊券',
+        'id' => $_POST['plus_day'],
+        'price' => $price[$_POST['plus_day']]
       );
       $text .= '<br>KANNSAI THRU PASS 關西周遊券';
       if($_POST['plus_day'] == '65'){
@@ -111,6 +128,8 @@ class Price extends CI_Controller {
     }
     if(@$_POST['ticket']){
       $data->ticket = $index[$_POST['ticket']];
+      $data->ticket_id = $_POST['ticket'];
+      $data->ticket_price = $price[$_POST['ticket']];
       $text .= '<br>'.$index[$_POST['ticket']];
     }
 
