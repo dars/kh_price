@@ -91,17 +91,23 @@
                   <span class="custom-checkbox"></span>
                 </label>
                 <a class="btn btn-sm btn-danger" id="set_readed_all"><i class="fa fa-check"></i> Make Readed</a>
-            </div>
+              </div>
+            <?php else:?>
+              <div class="panel-body">
+                <label class="label-checkbox inline">
+                  <input type="checkbox" id="chk-all">
+                  <span class="custom-checkbox"></span>
+                </label>
+                <a class="btn btn-sm btn-danger" id="set_delete_all"><i class="fa fa-times"></i> Delete</a>
+              </div>
             <?php endif; ?>
             <ul class="list-group">
               {results}
               <li class="list-group-item clearfix inbox-item">
-                <?php if($this->uri->segment(2) == 'index'): ?>
                 <label class="label-checkbox inline">
                   <input type="checkbox" name="items[]" class="chk-item" value="{id}">
                   <span class="custom-checkbox"></span>
                 </label>
-                <?php endif;?>
                 <a href="index.php?/admin/view/{id}"><span class="from">{name}</span></a>
                 <span class="email">{email}</span>
                 <span class="tel">{tel}</span>
@@ -173,6 +179,26 @@
           });
           $.ajax({
             url:'index.php?/admin/set_readed',
+            type: 'post',
+            data: {'ids':ids},
+            success: function(){
+              location.reload();
+            }
+          });
+        }
+      }
+    });
+    $('#set_delete_all').click(function(){
+      objs = $('.chk-item:checked');
+      if(objs.length > 0){
+        var flag = confirm('確定要將勾選項目刪除？');
+        if(flag){
+          var ids = [];
+          $.each(objs, function(i, e){
+            ids.push($(e).val());
+          });
+          $.ajax({
+            url:'index.php?/admin/set_delete',
             type: 'post',
             data: {'ids':ids},
             success: function(){

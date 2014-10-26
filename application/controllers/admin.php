@@ -57,6 +57,13 @@ class Admin extends CI_Controller {
     $this->db->query("UPDATE price_logs SET readed = true, updated_at='".date('Y-m-d H:i:s')."' WHERE id in (".join($_POST['ids'],',').")");
   }
 
+  function set_delete(){
+    if(!$this->session->userdata('logger_in')){
+      redirect(substr(base_url(), 0, -1).'?/admin/login', 'refresh');
+    }
+    $this->db->query("DELETE FROM price_logs WHERE id in (".join($_POST['ids'],',').")");
+  }
+
   function view(){
     if(!$this->session->userdata('logger_in')){
       redirect(substr(base_url(), 0, -1).'?/admin/login', 'refresh');

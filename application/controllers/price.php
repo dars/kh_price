@@ -23,7 +23,7 @@ class Price extends CI_Controller {
       $index[$row->id] = $row->name;
       $price[$row->id] = $row->price;
     }
-    $text = '';
+    $text = '<style>body{font:13px verdana;}a{color:#624b2a;}</style>';
     switch($_POST['kind']){
       case 1:
         $text .= '<h1>聖誕關西╳戀戀雙人行</h1>';
@@ -133,6 +133,8 @@ class Price extends CI_Controller {
       $text .= '<br>'.$index[$_POST['ticket']];
     }
 
+    $text .= "<br><a href='http://knt-tabihime.com/kh_price/index.php?/admin/view/".$this->db->insert_id()."' target='_blank'>線上檢視</a>";
+
     $this->db->set('name', $_POST['name']);
     $this->db->set('kind', $_POST['kind']);
     $this->db->set('tel', $_POST['tel']);
@@ -147,7 +149,7 @@ class Price extends CI_Controller {
 
     # Now, compose and send your message.
     $mg->sendMessage($domain, array('from'    => 'service@sandbox1331.mailgun.org',
-                                    'to'      => 'dars94@gmail.com',
+                                    'to'      => 'win0810@gmail.com',
                                     'subject' => '線上行程價錢試算 #'.$this->db->insert_id().' '.date('Y-m-d H:i:s'),
                                     'text'    => $text,
                                     'html'    => $text));
