@@ -151,5 +151,6 @@ class Price extends CI_Controller {
                                     'subject' => '線上行程價錢試算 #'.$this->db->insert_id().' '.date('Y-m-d H:i:s'),
                                     'text'    => $text,
                                     'html'    => $text));
+    redirect($_SERVER['HTTP_REFERER'], 'refresh');
   }
 }

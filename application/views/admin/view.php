@@ -48,7 +48,7 @@
             <span><i class="fa fa-chevron-down"></i></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a tabindex="-1" class="main-link logoutConfirm_open" href="#logoutConfirm"><i class="fa fa-lock fa-lg"></i> Log out</a></li>
+            <li><a tabindex="-1" class="main-link logoutConfirm_open" href="index.php?/admin/doLogout"><i class="fa fa-lock fa-lg"></i> Log out</a></li>
           </ul>
         </li>
       </ul>
@@ -209,18 +209,6 @@
     </div><!-- /main-container -->
 
   <a href="" id="scroll-to-top" class="hidden-print"><i class="fa fa-chevron-up"></i></a>
-
-  <!-- Logout confirmation -->
-  <div class="custom-popup width-100" id="logoutConfirm">
-    <div class="padding-md">
-      <h4 class="m-top-none"> Do you want to logout?</h4>
-    </div>
-
-    <div class="text-center">
-      <a class="btn btn-success m-right-sm" href="login.html">Logout</a>
-      <a class="btn btn-danger logoutConfirm_close">Cancel</a>
-    </div>
-  </div>
 
     <!-- Le javascript
     ================================================== -->
