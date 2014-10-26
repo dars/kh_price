@@ -115,6 +115,7 @@ class Price extends CI_Controller {
     }
 
     $this->db->set('name', $_POST['name']);
+    $this->db->set('kind', $_POST['kind']);
     $this->db->set('tel', $_POST['tel']);
     $this->db->set('email', $_POST['email']);
     $this->db->set('row_data', json_encode($data));
