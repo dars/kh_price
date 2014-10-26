@@ -9,8 +9,15 @@
 <script type="text/javascript" src="http://kh.dev/index.php?/price/getPriceData"></script>
 <script type="text/javascript">
 $(function(){
-  $('#send_btn').click(function(){
-    alert('信件已寄出, 謝謝您');
+  $('#price_form').submit(function(){
+    if($('#name').val().length == 0 || $('#tel').val().length == 0 || $('#email').val().length == 0){
+      alert('請填寫完整的聯絡資訊');
+      return false;
+    }else{
+      alert('您的資料已寄出，謝謝');
+      return true;
+    }
+    return false;
   });
   $('.has_price, .hotel, .plus, #plus_day2, #plus_day3').click(function(){countPrice()});
   $('.opts').change(function(){countPrice()});
@@ -38,7 +45,7 @@ $(function(){
 
 <body>
 <section class="aside">
-<form id="price_form">
+<form id="price_form" method="post" action="/index.php?/price/mail" target="_blank">
   <div class="send">
     <p><span class="red">自組行程步驟</span></p>
     <p>1. 行程可依個人喜好自由選配機票、飯店及行程。</p>
@@ -46,7 +53,7 @@ $(function(){
   </div>
   <h1>行程名稱：<span class="red">購物天堂╳美食輕鬆享 女孩們的充電小旅行</span></h1>
   <div class="send">
-    <!-- <div>
+    <div>
       <h2>訂購人基本資料</h2>
     </div>
     <br>
@@ -62,7 +69,7 @@ $(function(){
       <label class="label-title-2"><span class="red">＊</span>Email信箱：</label>
       <input type="text" name="email" id="email"  class="form-style">
     </div>
-    <br> -->
+    <br>
     <div>
       <h2>行程資訊</h2>
     </div>
@@ -77,7 +84,7 @@ $(function(){
       <input type="checkbox" name="hotel_1" id="hotel_1" value="show" class="check-style-2 hotel">
       東京超值
       飯店名稱
-      <select  name="hotel_opt_1" id="hotel_opt_1" class="opts">
+      <select  name="hotel_opts_1" id="hotel_opt_1" class="opts">
         <option value=41 selected>新宿NEW CITY</option>
         <option value=42>池袋GRAND CITY</option>
         <option value=43>THE B 池袋酒店</option>
@@ -102,7 +109,7 @@ $(function(){
       <input type="checkbox" name="hotel_2" id="hotel_2" value="show" class="check-style-2 hotel">
       東京舒適
       飯店名稱
-      <select name="hotel_opt_2" id="hotel_opt_2" class="opts">
+      <select name="hotel_opts_2" id="hotel_opt_2" class="opts">
         <option value=51 selected>品川王子主塔</option>
         <option value=52>淺草豪景酒店</option>
         <option value=53>京王廣場酒店</option>
@@ -123,7 +130,7 @@ $(function(){
       <input type="checkbox" name="hotel_3" id="hotel_3" value="show" class="check-style-2 hotel">
       東京奢華
       飯店名稱
-      <select name="hotel_opt_3" id="hotel_opt_3" class="opts">
+      <select name="hotel_opts_3" id="hotel_opt_3" class="opts">
         <option value=57 selected>東京麗池卡登酒店</option>
         <option value=58>東京帝國</option>
         <option value=59>PARK東京凱悅</option>
@@ -157,9 +164,10 @@ $(function(){
   <p>3. 提早一個月預約，飯店將有早鳥優惠價！</p>
   </div>
   <div class="form-box">
-    <!-- <input name="" id="send_btn" type="button" value="確認送出" class="btn-default" /> -->
+    <input type="hidden" name="kind" value=5>
+    <input name="" id="send_btn" type="submit" value="確認送出" class="btn-default" />
   </div>
-  <!-- <p style="text-align:center"><span class="red">送出資料不代表訂位成功，將有專人為您服務，謝謝！</span></p> -->
+  <p style="text-align:center"><span class="red">送出資料不代表訂位成功，將有專人為您服務，謝謝！</span></p>
 </form>
 </section>
 </body>
